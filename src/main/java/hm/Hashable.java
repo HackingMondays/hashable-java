@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Hashable {
     public static Integer hashWord(String word) {
+        // TODO here come your code
         return word.length();
     }
 
