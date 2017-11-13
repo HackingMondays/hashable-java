@@ -8,8 +8,8 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 public class Hashable {
-    public static String hashWord(String word) {
-        return Integer.toString(word.length());
+    public static Integer hashWord(String word) {
+        return word.length();
     }
 
     public static void main(String[] args) {
@@ -17,11 +17,11 @@ public class Hashable {
         ArrayList<String> words = loadWords();
         end("load words");
 
-        HashMap<String, ArrayList<String>> results = new HashMap<>();
+        HashMap<Integer, ArrayList<String>> results = new HashMap<>();
 
         start("iterate over words");
         for (String word : words) {
-            String hash = Hashable.hashWord(word);
+            Integer hash = Hashable.hashWord(word);
             if (results.containsKey(hash)) {
                 results.get(hash).add(word);
             } else {
@@ -34,7 +34,7 @@ public class Hashable {
 
         if (results.size() < words.size()) {
             int collisionCount = words.size() - results.size();
-            for (Map.Entry<String, ArrayList<String>> entry : results.entrySet()) {
+            for (Map.Entry<Integer, ArrayList<String>> entry : results.entrySet()) {
                 ArrayList<String> innerWords = entry.getValue();
                 if (innerWords.size() > 1) {
                     List<String> sub = innerWords.subList(0, Math.min(10, innerWords.size()));
